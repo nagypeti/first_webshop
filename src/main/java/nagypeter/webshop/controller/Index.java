@@ -47,6 +47,17 @@ public class Index {
     return "index";
   }
 
+  @RequestMapping("/avarage-stock")
+  public String getAvarageStock(Model model) {
+    int sumOfStock = 0;
+    for (ShopItem item : listOfAllShopItems.getListOfShopItems()) {
+      sumOfStock += item.getQuantity();
+    }
+    double avarageStock = sumOfStock / (double) listOfAllShopItems.getListOfShopItems().size();
+    model.addAttribute("avarageStock", avarageStock);
+    return "avarage-stock";
+  }
+
   @RequestMapping("/most-expensive")
   public String getMostExpensive(Model model) {
     List<ShopItem> tempList = listOfAllShopItems.getListOfShopItems()

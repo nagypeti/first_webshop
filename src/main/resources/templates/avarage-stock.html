@@ -1,0 +1,41 @@
+<!doctype html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+    <title>Webshopka</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" th:href="@{style.css}" />
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="header">
+        <h1>My Shop</h1>
+      </div>
+
+      <div class="navbar">
+        <a type="navbar" href="only-available">ONLY AVAILABLE</a>
+        <a type="navbar" href="cheapest-first">CHEAPEST FIRST</a>
+        <a type="navbar" href="contains-nike">CONTAINS NIKE</a>
+        <a type="navbar" href="avarage-stock">AVARAGE STOCK</a>
+        <a type="navbar" href="most-expensive">MOST EXPENSIVE AVAILABLE</a>
+      </div>
+
+      <div class="searchbar">
+        <p type="searchbar">Search for:</p>
+        <input type="text" placeholder="...something like nike">
+        <button type="search">Search</button>
+      </div>
+
+      <div class="avarageStock">
+        <p th:text="'Avarage stock: '+ ${avarageStock}"></p>
+      </div>
+
+    </div>
+
+  </body>
+
+</html>
