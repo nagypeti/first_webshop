@@ -46,7 +46,7 @@
             <tr>
               <td th:text="${shopItem.getName()}"></td>
               <td th:text="${shopItem.getDescription()}"></td>
-              <td align="center" th:text="${shopItem.getPrice()}"></td>
+              <td align="center" th:text="${shopItem.getPrice()} + 'Kč'"></td>
               <td align="center" th:text="${shopItem.getQuantity()}"></td>
             </tr>
           </th:block>

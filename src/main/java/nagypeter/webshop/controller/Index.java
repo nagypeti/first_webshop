@@ -6,8 +6,6 @@ import nagypeter.webshop.service.ShopItem;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,7 +21,8 @@ public class Index {
 
   @RequestMapping("/only-available")
   public String onlyAvailable(Model model) {
-    model.addAttribute("items", listOfAllShopItems.getListOfShopItems().stream()
+    model.addAttribute("items", listOfAllShopItems.getListOfShopItems()
+            .stream()
             .filter(ShopItem -> ShopItem.getQuantity() > 0)
             .collect(Collectors.toList()));
     return "index";
@@ -31,9 +30,31 @@ public class Index {
 
   @RequestMapping("/cheapest-first")
   public String cheapestFirst(Model model) {
-    model.addAttribute("items", listOfAllShopItems.getListOfShopItems().stream()
+    model.addAttribute("items", listOfAllShopItems.getListOfShopItems()
+            .stream()
             .sorted(Comparator.comparing(ShopItem::getPrice))
             .collect(Collectors.toList()));
+    return "index";
+  }
+
+  @RequestMapping("/contains-nike")
+  public String containsNike(Model model) {
+    model.addAttribute("items", listOfAllShopItems.getListOfShopItems()
+            .stream()
+            .filter(ShopItem -> ShopItem.getDescription().toLowerCase().contains("nike")
+            || ShopItem.getName().toLowerCase().contains("nike"))
+            .collect(Collectors.toList()));
+    return "index";
+  }
+
+  @RequestMapping("/most-expensive")
+  public String getMostExpensive(Model model) {
+    List<ShopItem> tempList = listOfAllShopItems.getListOfShopItems()
+            .stream()
+            .filter(shopItem -> shopItem.getQuantity() > 0)
+            .sorted(Comparator.comparing(ShopItem::getPrice).reversed())
+            .collect(Collectors.toList());
+    model.addAttribute("items", tempList.get(0));
     return "index";
   }
 
