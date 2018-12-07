@@ -1,4 +1,4 @@
-package nagypeter.webshop;
+package nagypeter.webshop.service;
 
 public class ShopItem {
 
