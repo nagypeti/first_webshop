@@ -23,13 +23,9 @@ public class Index {
 
   @RequestMapping("/only-available")
   public String onlyAvailable(Model model) {
-    List<ShopItem> availableItems = new ArrayList<>();
-    for (ShopItem item : listOfAllShopItems.getListOfShopItems()) {
-      if (item.getQuantity() > 0) {
-        availableItems.add(item);
-      }
-    }
-    model.addAttribute("items", availableItems);
+    model.addAttribute("items", listOfAllShopItems.getListOfShopItems().stream()
+            .filter(ShopItem -> ShopItem.getQuantity() > 0)
+            .collect(Collectors.toList()));
     return "index";
   }
 

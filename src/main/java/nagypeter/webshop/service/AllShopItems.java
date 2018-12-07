@@ -28,4 +28,5 @@ public class AllShopItems {
   public List<ShopItem> getListOfShopItems() {
     return listOfShopItems;
   }
+
 }
